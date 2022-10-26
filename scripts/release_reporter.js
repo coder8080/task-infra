@@ -17,6 +17,7 @@ const main = async () => {
   // Получение списка коммитов
   let query = `git log --pretty=format:"%h %an %s%d"`;
   let lastNumber = getLastNumber(release_version);
+  console.log('lastNumber', lastNumber);
   if (lastNumber > 1) {
     query += ` rc-0.0.${lastNumber - 1}...rc-0.0.${lastNumber}`;
   }
@@ -24,6 +25,7 @@ const main = async () => {
     exec(query, (err, data) => resolve(data))
   );
   let splitted = data.split('\n');
+  console.log('splitted', splitted);
   let commits = '';
   let end = splitted.length - 1;
   if (lastNumber === 1) {
@@ -32,6 +34,7 @@ const main = async () => {
   for (let i = 0; i < end; ++i) {
     commits += splitted[i] + '\n';
   }
+  console.log(commits);
   let text = `ответственный за релиз ${actor}
 коммиты, попавшие в релиз:
 ${commits}`;
