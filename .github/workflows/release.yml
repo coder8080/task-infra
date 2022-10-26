@@ -14,7 +14,7 @@ jobs:
           node-version: '16.16.0'
       - run: npm install
       - run: npm run test
-  build:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -22,9 +22,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.16.0'
-      - run: npm install
-      - run: npm run build
+      - uses: docker/build-push-action@v3
+        with:
+          push: false
+          context: ./
+          file: ./Dockerfile
+          tags: ${{ github.ref_name }}
   report:
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,12 +45,3 @@ jobs:
           ACTOR: ${{ github.actor }}
           RELEASE_VERSION: ${{ github.ref_name }}
         run: npm run report-release
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: actions/setup-node@v3
-  #       with:
-  #         node-version: '16.16.0'
-  #     - run: echo reached deploy step

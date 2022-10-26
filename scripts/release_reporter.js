@@ -9,35 +9,34 @@ const getLastNumber = (string) => {
 };
 
 const main = async () => {
+  console.log('Запущен скрипт создания комментария в тикете');
+  console.log('Начинаю получение данных окружения');
   // Получение переменных
   const authorization_key = process.env.TRACKER_AUTHORIZATION_KEY;
   const actor = process.env.ACTOR;
   const release_version = process.env.RELEASE_VERSION;
 
-  console.log('release_version', release_version);
-
+  console.log('Начинаю получение списка коммитов');
   // Получение списка коммитов
   let query = `git log --pretty=format:"%h %an %s"`;
   let lastNumber = getLastNumber(release_version);
-  console.log('lastNumber', lastNumber);
   if (lastNumber > 1) {
     query += ` rc-0.0.${lastNumber - 1}...rc-0.0.${lastNumber}`;
   }
-  console.log('query', query);
+  console.log(`Выполняю '> ${query}'`);
   const data = await new Promise((resolve) =>
     exec(query, (err, data) => resolve(data))
   );
   let splitted = data.split('\n');
-  console.log('splitted', splitted);
   let commits = '';
   for (let i = 0; i < splitted.length; ++i) {
     commits += splitted[i] + '\n';
   }
-  console.log(commits);
   let text = `ответственный за релиз ${actor}
 коммиты, попавшие в релиз:
 ${commits}`;
 
+  console.log('Отправляю запрос на создание комментария');
   // Создание комментария
   await axios.post(
     'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169/comments',
