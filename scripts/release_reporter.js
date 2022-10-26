@@ -23,6 +23,7 @@ const main = async () => {
   if (lastNumber > 1) {
     query += ` rc-0.0.${lastNumber - 1}...rc-0.0.${lastNumber}`;
   }
+  console.log('query', query);
   const data = await new Promise((resolve) =>
     exec(query, (err, data) => resolve(data))
   );
