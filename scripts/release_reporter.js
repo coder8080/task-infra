@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 
 const getLastNumber = (string) => {
   let splitted = string.split('.');
-  let number = Number(splitted[(splitted.length = 1)]);
+  let number = Number(splitted[splitted.length - 1]);
   return number;
 };
 
