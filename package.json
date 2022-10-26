@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "./node_modules/.bin/eslint .",
+    "lint": "./node_modules/.bin/eslint ./src",
     "ts": "./node_modules/.bin/tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
