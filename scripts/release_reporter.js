@@ -17,7 +17,7 @@ const main = async () => {
   console.log('release_version', release_version);
 
   // Получение списка коммитов
-  let query = `git log --pretty=format:"%h %an %s%d"`;
+  let query = `git log --pretty=format:"%h %an %s"`;
   let lastNumber = getLastNumber(release_version);
   console.log('lastNumber', lastNumber);
   if (lastNumber > 1) {
