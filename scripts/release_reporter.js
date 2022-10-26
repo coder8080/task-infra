@@ -14,6 +14,8 @@ const main = async () => {
   const actor = process.env.ACTOR;
   const release_version = process.env.RELEASE_VERSION;
 
+  console.log('release_version', release_version);
+
   // Получение списка коммитов
   let query = `git log --pretty=format:"%h %an %s%d"`;
   let lastNumber = getLastNumber(release_version);
