@@ -1,5 +1,5 @@
 const axios = require('axios');
-const process = require('process');
+const moment = require('moment');
 const { exec } = require('child_process');
 
 const getLastNumber = (string) => {
@@ -39,8 +39,9 @@ ${commits}`;
   console.log('Отправляю запрос на внесение информации о релизе');
   // Создание комментария
   await axios.patch(
-    'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169s',
+    'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169',
     {
+      summary: `Релиз ${release_version} ${moment().format('DD/MM/YYYY')}`,
       description: text,
     },
     {
