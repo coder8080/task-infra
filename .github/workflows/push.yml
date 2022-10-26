@@ -1,5 +1,5 @@
 name: push-workflow
-run-name: ${{ github.actor }} отправил изменения ${{ github.ref_name }} ${{ github.ref }}
+run-name: ${{ github.actor }} отправил ${{ github.sha }} в ${{ github.ref_name }}
 on:
   push:
     branches:
