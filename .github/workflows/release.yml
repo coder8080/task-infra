@@ -1,0 +1,35 @@
+name: release-workflow
+run-name: ${{ github.actor }} has created a new release
+on:
+  push:
+    tags:
+      - rc-**.**.**
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
+      - run: npm install
+      - run: npm run test
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
+      - run: npm install
+      - run: npm run build
+  deply:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
+      - run: echo reached deploy step
