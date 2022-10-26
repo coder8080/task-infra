@@ -25,7 +25,6 @@ jobs:
       - run: npm install
       - run: npm run build
   report:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +32,11 @@ jobs:
         with:
           node-version: '16.16.0'
       - run: npm install axios
-      - run: npm run report-release
+      - name: Generate release report
+        env:
+          TRACKER_AUTHORIZATION_KEY: ${{ secrets.TRACKER_AUTHORIZATION_KEY }}
+          ACTOR: ${{ github.actor }}
+        run: npm run report-release
   # deploy:
   #   needs: build
   #   runs-on: ubuntu-latest

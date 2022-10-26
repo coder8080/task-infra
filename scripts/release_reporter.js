@@ -2,9 +2,9 @@ const axios = require('axios');
 const process = require('process');
 
 const main = async () => {
-  console.log(process.env);
-  const authorization_key = process.env.secrets.TRACKER_AUTHORIZATION_KEY;
-  const text = JSON.stringify(process.github);
+  const authorization_key = process.env.TRACKER_AUTHORIZATION_KEY;
+  const actor = process.env.ACTOR;
+  const text = JSON.stringify(actor);
   console.log(authorization_key);
   const result = await axios.post(
     'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169/comments',
