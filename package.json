@@ -24,7 +24,8 @@
     "ts": "./node_modules/.bin/tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "report-release": "node ./scripts/release_reporter.js"
+    "report-release": "node ./scripts/release_reporter.js",
+    "report-docker": "node ./scripts/docker_reporter.js"
   },
   "eslintConfig": {
     "extends": [

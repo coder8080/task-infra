@@ -36,26 +36,12 @@ const main = async () => {
 коммиты, попавшие в релиз:
 ${commits}`;
 
-  console.log('Отправляю запрос на создание комментария о релизе');
+  console.log('Отправляю запрос на внесение информации о релизе');
   // Создание комментария
-  await axios.post(
-    'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169/comments',
+  await axios.patch(
+    'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169s',
     {
-      text,
-    },
-    {
-      headers: {
-        Authorization: 'OAuth ' + authorization_key,
-        'X-Org-ID': '7526988',
-      },
-    }
-  );
-
-  console.log('Отправляю запрос на создание комментария о сборке docker');
-  await axios.post(
-    'https://api.tracker.yandex.net/v2/issues/HOMEWORKSHRI-169/comments',
-    {
-      text: `Собран docker образ в тегом ${release_version}`,
+      description: text,
     },
     {
       headers: {

@@ -35,7 +35,21 @@ jobs:
           context: ./
           file: ./Dockerfile
           tags: ${{ github.ref_name }}
-  report:
+  report_docker:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.16.0'
+      - run: npm install axios
+      - name: Generate docker report
+        env:
+          TRACKER_AUTHORIZATION_KEY: ${{ secrets.TRACKER_AUTHORIZATION_KEY }}
+          RELEASE_VERSION: ${{ github.ref_name }}
+        run: npm run report-docker
+  report_release:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
