@@ -24,12 +24,22 @@ jobs:
           node-version: '16.16.0'
       - run: npm install
       - run: npm run build
-  deply:
-    needs: build
+  report:
+    needs: test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16.16.0'
-      - run: echo reached deploy step
+      - run: npm install axios
+      - run: npm run report-release
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-node@v3
+  #       with:
+  #         node-version: '16.16.0'
+  #     - run: echo reached deploy step
