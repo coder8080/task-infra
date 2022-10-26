@@ -1,5 +1,5 @@
 name: release-workflow
-run-name: ${{ github.actor }} создал релиз ${{ github.ref }} на ${{ github.ref_name }}
+run-name: ${{ github.actor }} создал релиз ${{ github.ref }}
 on:
   push:
     tags:
@@ -36,6 +36,7 @@ jobs:
         env:
           TRACKER_AUTHORIZATION_KEY: ${{ secrets.TRACKER_AUTHORIZATION_KEY }}
           ACTOR: ${{ github.actor }}
+          RELEASE_VERSION: ${{ github.ref }}
         run: npm run report-release
   # deploy:
   #   needs: build
