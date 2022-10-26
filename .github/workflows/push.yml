@@ -2,7 +2,10 @@ name: push-workflow
 run-name: ${{ github.actor }} has pushed
 on:
   push:
+    branches:
+      - '**'
     tags:
+      - '**'
       - '!rc-*.*.*'
 jobs:
   test:
