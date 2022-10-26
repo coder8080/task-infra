@@ -2,8 +2,8 @@ name: push-workflow
 run-name: ${{ github.actor }} has pushed
 on:
   push:
-    tags-ignore:
-      - rc-**.**.**
+    tags:
+      - !rc-*.*.*
 jobs:
   test:
     runs-on: ubuntu-latest

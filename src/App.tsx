@@ -2,8 +2,6 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// unsignificant change
-
 function App() {
   return (
     <div className="App">
