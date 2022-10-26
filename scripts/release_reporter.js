@@ -30,11 +30,7 @@ const main = async () => {
   let splitted = data.split('\n');
   console.log('splitted', splitted);
   let commits = '';
-  let end = splitted.length - 1;
-  if (lastNumber === 1) {
-    end += 1;
-  }
-  for (let i = 0; i < end; ++i) {
+  for (let i = 0; i < splitted.length; ++i) {
     commits += splitted[i] + '\n';
   }
   console.log(commits);
