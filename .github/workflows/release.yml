@@ -1,7 +1,9 @@
 name: release-workflow
-run-name: ${{ github.actor }} has created a new release
+run-name: ${{ github.actor }} создал релиз ${{ github.ref }} ${{ github.ref_name }}
 on:
   push:
+    branches:
+      - '**'
     tags:
       - 'rc-*.*.*'
 jobs:
