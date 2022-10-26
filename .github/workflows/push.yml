@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} has pushed
 on:
   push:
     tags:
-      - !rc-*.*.*
+      - '!rc-*.*.*'
 jobs:
   test:
     runs-on: ubuntu-latest
